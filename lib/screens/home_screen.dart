@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_detect_aeroplane_mode/services/aeroplane_mode_detector_service.dart';
 
+import '../services/sound_services.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -31,7 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  void showBottomSheetWarning() {
+  void showBottomSheetWarning()async {
+    // 🔊 PLAY SOUND
+    SoundPlayer.play();
+
     showModalBottomSheet(
       isDismissible: false,
       context: context,
