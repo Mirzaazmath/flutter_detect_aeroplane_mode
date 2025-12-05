@@ -79,11 +79,19 @@ class MainActivity : FlutterActivity() {
 
     // ------------------ PLAY WARNING SOUND ------------------
     private fun playSound() {
-        if (player == null) {
-            player = MediaPlayer.create(this, R.raw.warning)
+        // If already created, release old one to avoid memory leaks
+        player?.release()
+        player = null
+
+        player = MediaPlayer.create(this, R.raw.warning)
+        player?.setOnCompletionListener {
+            it.release()   // release when done
+            player = null  // prevent memory leaks
         }
+
         player?.start()
     }
+
 
 
     // ------------------ OPEN AIRPLANE SETTINGS ------------------
