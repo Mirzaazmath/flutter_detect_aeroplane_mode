@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_detect_aeroplane_mode/services/aeroplane_mode_detector_service.dart';
+import 'package:flutter_detect_aeroplane_mode/services/open_setting_services.dart';
 
 import '../services/sound_services.dart';
 
@@ -59,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   textAlign: TextAlign.center,
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    OpenSettingsService.openAirplaneSettings();
+                  },
                   child: Container(
                     height: 50,
                     width: double.infinity,
