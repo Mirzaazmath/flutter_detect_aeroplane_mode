@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void showBottomSheetWarning()async {
-    // 🔊 PLAY SOUND
+    //  PLAY SOUND
     SoundPlayer.play();
 
     showModalBottomSheet(
@@ -46,18 +46,31 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             padding: const EdgeInsets.all(20),
             height: 200,
-            child: const Column(
+            child:  Column(
+              spacing: 10,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   "⚠ Airplane Mode is ON",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10),
                 Text(
                   "Please turn OFF Airplane mode for proper app functionality.",
                   textAlign: TextAlign.center,
                 ),
+                GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text("Open Settings",style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),),
+                  ),
+                )
               ],
             ),
           ),
