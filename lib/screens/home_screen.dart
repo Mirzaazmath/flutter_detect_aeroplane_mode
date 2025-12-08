@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   StreamSubscription<bool>? _streamSubscription;
   bool isBottomSheetOpen = false;
+  BuildContext? _bottomSheetContext;
 
   @override
   void initState() {
@@ -35,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void showBottomSheetWarning()async {
+    if (_bottomSheetContext != null) return; // already open
+
     //  PLAY SOUND
     SoundPlayer.play();
 
@@ -42,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       isDismissible: false,
       context: context,
       builder: (context) {
+        _bottomSheetContext = context;
         return PopScope(
           canPop: false,
           child: Container(
@@ -79,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       },
-    );
+    ).whenComplete(() => _bottomSheetContext = null);;
   }
 
   @override
